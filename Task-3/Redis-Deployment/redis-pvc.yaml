@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: redis-persistent-volume
+  namespace: demo
+  labels:
+      type: redis-persistent-volume
+spec:
+  volumeName: redis-volume
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi

@@ -1,0 +1,27 @@
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: upg-loadme
+  namespace: demo
+spec:
+  replicas: 1
+    selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis
+        command:
+          - bash      
+          - "-c"
+          - "sleep 100000"
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 6379
+      restartPolicy: Always
