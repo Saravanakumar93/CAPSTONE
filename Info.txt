@@ -30,6 +30,6 @@ kubectl create -f hpa.yaml
 
 kubectl delete all --all -n demo
 
-eksctl delete cluster -f eks-cluster-config.yaml
+eksctl delete cluster -f sara-eks.yaml
 
 terraform destroy -auto-approve
