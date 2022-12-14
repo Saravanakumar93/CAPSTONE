@@ -1,0 +1,35 @@
+terraform init
+
+terraform apply -auto-approve
+
+
+eksctl create cluster -f sara-eks.yaml
+
+kubectl create -f deployment.yaml
+
+kubectl create -f ingress.yaml
+
+kubectl create -f upg-loadme-hpa.yaml
+
+kubectl create redis-pv.yaml
+
+kubectl create redis-pvc.yaml -n demo
+
+kubectl create redis-configmap.yaml
+
+kubectl create redis-stateful-set.yaml
+
+kubectl create redis-deployment.yaml
+
+kubectl create redis-service.yaml
+
+kubectl create -f hpa.yaml
+
+#--------------------------------------------------------------------------
+# Clearing the resources
+
+kubectl delete all --all -n demo
+
+eksctl delete cluster -f eks-cluster-config.yaml
+
+terraform destroy -auto-approve
